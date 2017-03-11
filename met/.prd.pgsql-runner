@@ -1,11 +1,21 @@
 # perl_ignore_file_pattern=.*\.swp$|.*\.log|$.*\.swo$
 src/bash/pgsql-runner/tests/run-pgsql-runner-tests.lst
+src/bash/pgsql-runner/tests/all-pgsql-runner-tests.lst
 src/bash/pgsql-runner/test-pgsql-runner.sh
 src/bash/pgsql-runner/pgsql-runner.sh
 README.md
+1
+doc/txt/pgsql-runner/specs/run-pgsql-scripts.spec.txt
+doc/txt/pgsql-runner/funcs/run-pgsql-scripts.func.txt
+doc/txt/pgsql-runner/tests/run-pgsql-scripts.test.txt
+doc/txt/pgsql-runner/helps/run-pgsql-scripts.help.txt
+src/bash/pgsql-runner/specs/run-pgsql-scripts.spec.sh
+src/bash/pgsql-runner/funcs/run-pgsql-scripts.func.sh
+src/bash/pgsql-runner/tests/run-pgsql-scripts.test.sh
+src/bash/pgsql-runner/helps/run-pgsql-scripts.help.sh
+1
 .gitignore
 src/bash/pgsql-runner/tests/rem-pgsql-runner-actions.lst
-src/bash/pgsql-runner/tests/all-pgsql-runner-tests.lst
 src/bash
 src/bash/pgsql-runner
 src/bash/pgsql-runner/funcs

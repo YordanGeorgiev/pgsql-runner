@@ -1,10 +1,11 @@
-#  WRAPP
+#  PGSQL-RUNNER
 
 
     
 
-## 1. What is it ?!
-A generic swiss knife wanna be bash / perl centric application pgsql-runnerer for quicky packaging and deploying your tools, create new tools out of your existing ones , generating code for additonal functions, search and replace in both file paths and contents ... and all the rest not mentioned actions in the src/bash/pgsql-runner/tests/all-pgsql-runner-tests.lst file ...
+## 1. WHAT IS THIS
+A bash script tool to run your postgres sql script files and log it's actions nicely ... As well as :
+A generic swiss knife wanna be bash / perl centric application pgsql-runner for quicky packaging and deploying your tools, create new tools out of your existing ones , generating code for additonal functions, search and replace in both file paths and contents ... and all the rest not mentioned actions in the [sfw/bash/pgsql-runner/tests](sfw/bash/pgsql-runner/tests/all-pgsql-runner-tests.lst) file ...
 
     
 
@@ -50,26 +51,26 @@ Each pgsql-runner instance has it's own version, environmnt type and owner. For 
 
     
     # build your product version dir - a kind of "this instance of the thingy dir"
-    mv -v /opt/csitea/pgsql-runner/pgsql-runner /opt/csitea/pgsql-runner/pgsql-runner.1.1.5.dev.ysg
+    mv -v /opt/csitea/pgsql-runner/pgsql-runner /opt/csitea/pgsql-runner/pgsql-runner.1.1.5.dev.$USER
     
 
-### 2.4. Create you local cnf file
-The default cnf file provides only limited functionality ( this is by design ) , thus copy and cnfigure the cnfiguration file for your host
+### 2.4. Create you local conf file
+The default conf file provides only limited functionality ( this is by design ) , thus copy and configure the configuration file for your host
 
     # go to the product version dir
-    cd /opt/csitea/pgsql-runner/pgsql-runner /opt/csitea/pgsql-runner/pgsql-runner.1.1.5.dev.ysg
+    cd /opt/csitea/pgsql-runner/pgsql-runner /opt/csitea/pgsql-runner/pgsql-runner.1.1.5.dev.$USER
     
-    mv -v src/bash/pgsql-runner/pgsql-runner.set-your-host.cnf src/bash/pgsql-runner/pgsql-runner.`hostname -s`.cnf
+    mv -v sfw/bash/pgsql-runner/pgsql-runner.set-your-host.conf sfw/bash/pgsql-runner/pgsql-runner.`hostname -s`.conf
 
 ### 2.5. Start hacking
 Start hacking … or wait check at least the test call running all the functions of the tool … 
 
     # opionally if you are in the vim camp open the "project relative files list file"
-    vim met/.dev.pgsql-runner
+    vim meta/.dev.pgsql-runner
     
     # Ctrl + Z , 
-    bash src/bash/pgsql-runner/test-pgsql-runner.sh 
+    bash sfw/bash/pgsql-runner/test-pgsql-runner.sh 
     
     # now clone your own instance
-    bash src/bash/pgsql-runner/pgsql-runner.sh -a to-app=my-tool
+    bash sfw/bash/pgsql-runner/pgsql-runner.sh -a to-app=my-tool
 

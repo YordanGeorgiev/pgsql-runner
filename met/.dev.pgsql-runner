@@ -256,3 +256,7 @@ src/bash/pgsql-runner/tests/log-test-run-entry.test.sh
 src/bash/pgsql-runner/helps/log-test-run-entry.help.sh
 dat/tests/1
 1
+doc/md
+doc/md/pgsql-runner-features-and-functionalities.md
+doc/md/pgsql-runner-issues.md
+doc/md/pgsql-runner-devops-guide.md
