@@ -1,0 +1,13 @@
+#file: /opt/csitea/pgsql-runner/pgsql-runner.0.0.7.dev.ysg/src/bash/pgsql-runner/pgsql-runner.cnf 
+[MainSection]
+
+#use simple var_name=var_value syntax 
+
+#the name of this application 
+wrap_name=pgsql-runner
+
+#the name of this application's db
+db_name=dev_pgsql-runner
+
+
+#eof file: /opt/csitea/pgsql-runner/pgsql-runner.0.0.7.dev.ysg/src/bash/pgsql-runner/pgsql-runner.cnf

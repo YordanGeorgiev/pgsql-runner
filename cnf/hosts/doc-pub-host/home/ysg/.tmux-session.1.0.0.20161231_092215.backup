@@ -1,0 +1,5 @@
+sess--pgsql-runner	win--run-isgpub	/opt/csitea/isg-pub/isg-pub.0.9.7.tst.ysg
+sess--pgsql-runner	win--vim--pgsql-runner	/opt/csitea/pgsql-runner/pgsql-runner.1.1.6.dev.ysg
+sess--pgsql-runner	win--tst--pgsql-runner	/opt/csitea/pgsql-runner/pgsql-runner.1.1.6.tst.ysg
+sess--pgsql-runner	win--prd--pgsql-runner	/opt/csitea/pgsql-runner/pgsql-runner.1.1.6.prd.ysg
+sess--pgsql-runner	win--git--pgsql-runner	/opt/csitea/pgsql-runner/pgsql-runner.1.1.6.git.ysg

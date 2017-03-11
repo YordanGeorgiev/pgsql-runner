@@ -1,0 +1,32 @@
+# doc/txt/pgsql-runner/remove-action-files/remove-action-files.test.txt
+
+	doTestRemoveActionFiles
+	
+	# Purpose:
+	# ------------------------------------------------------
+	to test the remove of action-files containing funcs or specs 
+	marked to be removed in the 
+	src/bash/pgsql-runner/tests/rem-pgsql-runner-actions.lst
+	list file
+
+
+	# Usage:
+	# ------------------------------------------------------
+	add the remove-action-files
+	as a separate line in the 
+	src/bash/pgsql-runner/tests/run-pgsql-runner-tests.lst
+	tests to run list file
+
+
+	# Issues:
+	# ------------------------------------------------------
+
+
+	# Caveats:
+	# ------------------------------------------------------
+	of course make a backup before deciding to remove functions and code 
+	from your tool ... 
+
+
+
+# eof file: doc/txt/pgsql-runner/remove-action-files/remove-action-files.test.txt

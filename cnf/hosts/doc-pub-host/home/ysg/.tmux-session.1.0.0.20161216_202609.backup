@@ -1,0 +1,6 @@
+sess--pgsql-runner	win---root-mgmt	/opt/csitea/pgsql-runner/pgsql-runner.1.1.6.dev.ysg
+sess--pgsql-runner	win---vim-pgsql-runner	/opt/csitea/pgsql-runner/pgsql-runner.1.1.6.dev.ysg
+sess--pgsql-runner	win---vim-tool	/opt/csitea/pgsql-runner/pgsql-runner.1.1.6.dev.ysg
+sess--tool	win---root-mgmt	/opt/csitea/tool/tool.1.1.6.dev.ysg
+sess--tool	win---vim-tool	/opt/csitea/tool/tool.1.1.6.dev.ysg
+sess--tool	win---vim-tool	/opt/csitea/tool/tool.1.1.6.dev.ysg

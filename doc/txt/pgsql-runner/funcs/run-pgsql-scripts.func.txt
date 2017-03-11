@@ -1,0 +1,38 @@
+# doc/txt/pgsql-runner/run-pgsql-scripts/run-pgsql-scripts.func.txt
+
+	doRunPgsqlScripts
+	
+	# Purpose:
+	# ------------------------------------------------------
+	to run all the pgsql scripts under the dir:
+   sfw/sql/pgsql/<<db-name>> 
+   by logging the output of the scripts to a log file
+
+	# Prequisites
+	# ------------------------------------------------------
+   gnu bash, perl, pgsql-runner core funcs, postgres
+   <<db-name>> is configured in the conf file
+
+	# Installation
+	# ------------------------------------------------------
+   gnu bash, perl, pgsql-runner core funcs, postgres
+
+	# Interdependancies
+	# ------------------------------------------------------
+   gnu bash, perl, pgsql-runner core funcs, postgres
+   <<db-name>> is configured in the conf file
+
+	# Usage:
+	# ------------------------------------------------------
+	bash src/bash/pgsql-runner/pgsql-runner.sh -a run-pgsql-scripts
+
+	# Developent
+	# ------------------------------------------------------
+	-- todo: impplement, cheat from mysql-runner
+
+	# Caveats:
+	# ------------------------------------------------------
+	none so far ... 
+
+
+# eof file: doc/txt/pgsql-runner/run-pgsql-scripts/run-pgsql-scripts.func.txt

@@ -1,0 +1,41 @@
+# doc/txt/pgsql-runner/remove-action-files/remove-action-files.spec.txt
+
+	doSpecRemoveActionFiles
+	
+	# Purpose:
+	# ------------------------------------------------------
+	to provide a quick oneliner for removing specified action files
+
+	# Prequisites
+	# ------------------------------------------------------
+	perl , bash
+
+	# Installation
+	# ------------------------------------------------------
+	install perl , bash 
+
+	# Interdependancies
+	# ------------------------------------------------------
+	you need to specify the action files to be removed in the : 
+	src/bash/pgsql-runner/tests/rem-pgsql-runner-actions.lst
+	list file
+	echo create-full-7z-package >> src/bash/pgsql-runner/tests/rem-pgsql-runner-actions.lst
+
+	# Usage:
+	# ------------------------------------------------------
+	bash src/bash/pgsql-runner/pgsql-runner.sh -a remove-action-files
+
+
+	# Issues
+	# ------------------------------------------------------
+	console output ?!:
+	bash: line 1: src/bash/pgsql-runner/funcs/action-to-remove.func.sh: No such file or directory
+
+	# Caveats:
+	# ------------------------------------------------------
+	of course your actions to be removed should not overlap with 
+	actions you do not want to remove , since we use grep ... 
+
+
+
+# eof file: doc/txt/pgsql-runner/remove-action-files/remove-action-files.spec.txt
