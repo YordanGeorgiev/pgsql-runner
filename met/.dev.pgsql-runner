@@ -3,6 +3,12 @@ src/bash/pgsql-runner/tests/run-pgsql-runner-tests.lst
 src/bash/pgsql-runner/tests/all-pgsql-runner-tests.lst
 src/bash/pgsql-runner/test-pgsql-runner.sh
 src/bash/pgsql-runner/pgsql-runner.sh
+src/bash/pgsql-runner/pgsql-runner.cnf
+src/bash/pgsql-runner/pgsql-runner.doc-pub-host.cnf
+src/bash/pgsql-runner/pgsql-runner.dev.doc-pub-host.cnf
+src/bash/pgsql-runner/pgsql-runner.tst.doc-pub-host.cnf
+src/bash/pgsql-runner/pgsql-runner.prd.doc-pub-host.cnf
+src/bash/pgsql-runner/pgsql-runner.set-your-host.cnf
 README.md
 1
 doc/txt/pgsql-runner/specs/run-pgsql-scripts.spec.txt
@@ -14,6 +20,12 @@ src/bash/pgsql-runner/funcs/run-pgsql-scripts.func.sh
 src/bash/pgsql-runner/tests/run-pgsql-scripts.test.sh
 src/bash/pgsql-runner/helps/run-pgsql-scripts.help.sh
 1
+src/sql/pgsql/dev_pgsql_runner
+src/sql/pgsql/dev_pgsql_runner/00.create-db.pgsql
+src/sql/pgsql/tst_pgsql_runner
+src/sql/pgsql/tst_pgsql_runner/00.create-db.pgsql
+src/sql/pgsql/prd_pgsql_runner
+src/sql/pgsql/prd_pgsql_runner/00.create-db.pgsql
 .gitignore
 src/bash/pgsql-runner/tests/rem-pgsql-runner-actions.lst
 src/bash

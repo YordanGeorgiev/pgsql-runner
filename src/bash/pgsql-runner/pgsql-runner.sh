@@ -402,7 +402,11 @@ doParseConfFile(){
 	
 	# if we have perl apps they will share the same cnfiguration settings with this one
 	test -f "$product_instance_dir/$wrap_name.$host_name.cnf" \
-		&& cnf_file="$product_instance_dir/$wrap_name.$host_name.cnf"
+		&& cnf_file="$product_instance_dir/cnf/$wrap_name.$host_name.cnf"
+	
+   # however if there is a host dependant and env-aware cnf file override it
+	test -f "$wrap_bash_dir/$wrap_name.$host_name.cnf" \
+		&& cnf_file="$wrap_bash_dir/$wrap_name.$env_type.$host_name.cnf"
 
 	# yet finally override if passed as argument to this function
 	# if the the ini file is not passed define the default host independant ini file

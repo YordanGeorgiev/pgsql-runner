@@ -13,14 +13,24 @@
    gnu bash, perl, pgsql-runner core funcs, postgres
    <<db-name>> is configured in the conf file
 
-	# Installation
+	# Installation & Configuration
 	# ------------------------------------------------------
    gnu bash, perl, pgsql-runner core funcs, postgres
+   the shell user should be created in postgres as follows:
+   create user ysg ;
+
+   # grant him the priviledges
+   grant all privileges on database postgres to ysg ;
+
+   # grant him the privilege to create db's 
+   ALTER USER ysg CREATEDB;
+
 
 	# Interdependancies
 	# ------------------------------------------------------
    gnu bash, perl, pgsql-runner core funcs, postgres
    <<db-name>> is configured in the conf file
+   the shell user pre-configured 
 
 	# Usage:
 	# ------------------------------------------------------
@@ -28,11 +38,13 @@
 
 	# Developent
 	# ------------------------------------------------------
-	-- todo: impplement, cheat from mysql-runner
 
 	# Caveats:
 	# ------------------------------------------------------
-	none so far ... 
+	the db is ALWAYS DROPPED AND RECREATED !!!!
+   src/sql/pgsql/dev_pgsql_runner/00.create-db.pgsql
+   
+   Note also the dev , tst , prd databases
 
 
 # eof file: doc/txt/pgsql-runner/run-pgsql-scripts/run-pgsql-scripts.func.txt

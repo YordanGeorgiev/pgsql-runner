@@ -6,8 +6,8 @@
 #the name of this application 
 app_name=pgsql-runner
 
-# the dev db
-pgsql_db=dev_pgsql_runner
+# the prd db
+pgsql_db=prd_pgsql_runner
 
 # to whom to send e-mails - use space as delimiter
 Emails=yordan.georgiev@gmail.com
@@ -15,4 +15,4 @@ Emails=yordan.georgiev@gmail.com
 # where to place the backups of the 
 network_backup_dir=/vagrant/csitea/pgsql-runner/dat/zip
 
-#eof file: src/bash/pgsql-runner/pgsql-runner.set-your-host.cnf
+#eof file: src/bash/pgsql-runner/pgsql-runner.doc-pub-host.cnf
