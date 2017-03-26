@@ -13,8 +13,8 @@ doTestRunPgsqlScripts(){
 	test -z "$sleep_interval" || sleep "$sleep_interval"
 	# Action !!!
 	bash src/bash/pgsql-runner/pgsql-runner.sh -a run-pgsql-scripts
-
-	doLog "DEBUG STOP  doTestRunPgsqlScripts"
+   exit_code=$?
+   doLog "DEBUG STOP  doTestRunPgsqlScripts"
 }
 # eof func doTestRunPgsqlScripts
 

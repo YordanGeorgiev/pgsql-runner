@@ -1,16 +1,11 @@
 #!/bin/bash 
 # file: src/bash/pgsql-runner.sh doc at the eof file
-
 umask 022    ;
 
-# print the commands
-# set -x
-# print each input line as well
-# set -v
-# exit the script if any statement returns a non-true return value. gotcha !!!
-# set -e
-trap 'doExit $LINENO $BASH_COMMAND; exit' SIGHUP SIGINT SIGQUIT
-trap "exit 1" TERM
+# set -x # print the commands
+# set -v # print each input line as well
+# set -e # exit the script if any statement returns a non-true return value. gotcha !!!
+trap "exit $exit_code" TERM SIGTERM SIGHUP SIGINT SIGQUIT
 export TOP_PID=$$
 
 
@@ -43,6 +38,7 @@ main(){
 	doExit 0 "# = STOP  MAIN = $wrap_name "
 }
 #eof main
+
 
 # v1.0.7 
 #------------------------------------------------------------------------------
@@ -199,9 +195,6 @@ doCheckReadyToStart(){
 #eof func doCheckReadyToStart
 
 
-
-
-
 # v1.0.8
 #------------------------------------------------------------------------------
 # clean and exit with passed status and message
@@ -237,9 +230,11 @@ doExit(){
    #src: http://stackoverflow.com/a/9894126/65706
    test $exit_code -ne 0 && kill -s TERM $TOP_PID
    test $exit_code -eq 0 && exit 0
+   test $exit_code -ne 0 && kill -9 $TOP_PID
    
 }
 #eof func doExit
+
 
 
 #v1.0.7 
@@ -402,8 +397,8 @@ doParseConfFile(){
 	
 	# if we have perl apps they will share the same cnfiguration settings with this one
 	test -f "$product_instance_dir/$wrap_name.$host_name.cnf" \
-		&& cnf_file="$product_instance_dir/cnf/$wrap_name.$host_name.cnf"
-	
+		&& cnf_file="$product_instance_dir/$wrap_name.$host_name.cnf"
+   
    # however if there is a host dependant and env-aware cnf file override it
 	test -f "$wrap_bash_dir/$wrap_name.$host_name.cnf" \
 		&& cnf_file="$wrap_bash_dir/$wrap_name.$env_type.$host_name.cnf"
