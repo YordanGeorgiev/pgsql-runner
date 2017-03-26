@@ -1,6 +1,29 @@
 #  pgsql-runner DEVOPS
 
 
+Table of Contents
+
+  * [1. INTRODUCTION](#1-introduction)
+  * [2. KEY CONCEPTS](#2-key-concepts)
+  * [3. INSTALLATIONS AND CONFIGURATIONS](#3-installations-and-configurations)
+    * [3.1. Configure the Ubuntu repositories](#31-configure-the-ubuntu-repositories)
+    * [3.2. Add the media keys](#32-add-the-media-keys)
+    * [3.3. Install the postgre package with apt](#33-install-the-postgre-package-with-apt)
+    * [3.4. Change the postgre user password](#34-change-the-postgre-user-password)
+      * [3.4.1. Start the psql client as the postgres shell user](#341-start-the-psql-client-as-the-postgres-shell-user)
+      * [3.4.2. Create the pgsql user ](#342-create-the-pgsql-user-)
+    * [3.5. Install the perl modules ( optional)](#35-install-the-perl-modules-(-optional))
+  * [4. MAINTENANCE AND OPERATIONS](#4-maintenance-and-operations)
+    * [4.1. RUNSTATE MANAGEMENT](#41-runstate-management)
+      * [4.1.1. To check the status](#411-to-check-the-status)
+      * [4.1.2. To stop the postgreSql](#412-to-stop-the-postgresql)
+      * [4.1.3. To start the postgreSql](#413-to-start-the-postgresql)
+      * [4.1.4. to check the port on which it is listening ](#414-to-check-the-port-on-which-it-is-listening-)
+  * [5. NAMING CONVENTIONS](#5-naming-conventions)
+    * [5.1. Dirs naming conventions](#51-dirs-naming-conventions)
+      * [5.1.1. Root Dirs naming conventions](#511-root-dirs-naming-conventions)
+
+
      
 
 ## 1. INTRODUCTION
