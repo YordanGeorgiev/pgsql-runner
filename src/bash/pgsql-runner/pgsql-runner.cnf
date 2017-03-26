@@ -9,5 +9,7 @@ wrap_name=pgsql-runner
 #the name of this application's db
 db_name=dev_pgsql-runner
 
+# whether or not to print the debug msgs
+do_print_debug_msgs=1
 
 #eof file: /opt/csitea/pgsql-runner/pgsql-runner.0.0.7.dev.ysg/src/bash/pgsql-runner/pgsql-runner.cnf
