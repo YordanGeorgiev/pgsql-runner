@@ -282,3 +282,10 @@ doc/md
 doc/md/pgsql-runner-features-and-functionalities.md
 doc/md/pgsql-runner-issues.md
 doc/md/pgsql-runner-devops-guide.md
+doc/xls
+doc/xls/pgsql-runner-tool-issues.xls
+doc/pdf
+doc/pdf
+doc/pdf/pgsql-runner-devops-guide.pdf
+doc/pdf/pgsql-runner-issues.pdf
+doc/pdf/README.pdf
