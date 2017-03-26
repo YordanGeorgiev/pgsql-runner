@@ -1,4 +1,4 @@
-#  FEATURES AND FUNCTIONALITIES
+#  PGSQL-RUNNER FEATURES AND FUNCTIONALITIES
 
 
 Table of Contents
@@ -16,14 +16,17 @@ Table of Contents
     * [5.2. Running sql scripts in files alphabetic order](#52-running-sql-scripts-in-files-alphabetic-order)
     * [5.3. Logging sql scripts files run output to STDOUT , STDERR and a logfile](#53-logging-sql-scripts-files-run-output-to-stdout-,-stderr-and-a-logfile)
     * [5.4. Exit on sql script command fail](#54-exit-on-sql-script-command-fail)
-    * [5.5. DOCUMENTATION](#55-documentation)
-      * [5.5.1. README](#551-readme)
-      * [5.5.2. DevOpsGuide](#552-devopsguide)
-      * [5.5.3. Features and Functionalities doc](#553-features-and-functionalities-doc)
+  * [6. DOCUMENTATION](#6-documentation)
+    * [6.1. README](#61-readme)
+    * [6.2. DevOpsGuide](#62-devopsguide)
+    * [6.3. Features and Functionalities doc](#63-features-and-functionalities-doc)
 
 
 ## 1. INTRO
 This document presents the existing features and functionalities of this tool.
+The pgsql tool is a clone/fork/derivative of the wrapp tool:
+https://github.com/YordanGeorgiev/wrapp
+Thus it inherits (allmost) all of the wrapp tool features and functionalities ... Thus if any functionalty exists and it is ommited you most probably could find it in the features and functionalities doc of the wrapp tool or in the &lt;&lt;func-action-name&gt;&gt;.spec.txt unnder the doc/txt dir ... 
 
 ## 2. BASIC STDOUT, STDERR AND FILE LOGGING
 The tool logs ( quite verbosely ) all its operations. The verbosity could be adjusted via the configuration file. 
@@ -75,15 +78,15 @@ The tool will show you the output of each sql script file run and save it to a c
 ### 5.4. Exit on sql script command fail
 Should any of your sql script commands fail the tool with exit.
 
-### 5.5. DOCUMENTATION
+## 6. DOCUMENTATION
 All the docs are stored in pdf and github md file format. 
 
-#### 5.5.1. README
+### 6.1. README
 
 
-#### 5.5.2. DevOpsGuide
+### 6.2. DevOpsGuide
 The DevOps guide provides the basic instructions on how-to setup the environment for the tool and basic PostgreSQL operations to speed up the tool's usage. 
 
-#### 5.5.3. Features and Functionalities doc
+### 6.3. Features and Functionalities doc
 This document. 
 
