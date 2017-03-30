@@ -1,15 +1,41 @@
-#  pgsql-runner DEVOPS
+#  PGSQL-RUNNER DEVOPS GUIDE
+
+
+Table of Contents
+
+  * [1. INTRODUCTION](#1-introduction)
+  * [2. SEARCHING FOR ANSWERS](#2-searching-for-answers)
+  * [3. INSTALLATIONS AND CONFIGURATIONS](#3-installations-and-configurations)
+    * [3.1. Configure the Ubuntu repositories](#31-configure-the-ubuntu-repositories)
+    * [3.2. Add the media keys](#32-add-the-media-keys)
+    * [3.3. Install the postgre package with apt](#33-install-the-postgre-package-with-apt)
+    * [3.4. Change the postgre user password](#34-change-the-postgre-user-password)
+      * [3.4.1. Start the psql client as the postgres shell user](#341-start-the-psql-client-as-the-postgres-shell-user)
+      * [3.4.2. Create the pgsql user ](#342-create-the-pgsql-user-)
+    * [3.5. Install the perl modules ( optional)](#35-install-the-perl-modules-(-optional))
+  * [4. MAINTENANCE AND OPERATIONS](#4-maintenance-and-operations)
+    * [4.1. RUNSTATE MANAGEMENT](#41-runstate-management)
+      * [4.1.1. To check the status of the postgreSql](#411-to-check-the-status-of-the-postgresql)
+      * [4.1.2. To stop the postgreSql](#412-to-stop-the-postgresql)
+      * [4.1.3. To start the postgreSql](#413-to-start-the-postgresql)
+      * [4.1.4. to check the port on which it is listening ](#414-to-check-the-port-on-which-it-is-listening-)
+  * [5. NAMING CONVENTIONS](#5-naming-conventions)
+    * [5.1. Dirs naming conventions](#51-dirs-naming-conventions)
+      * [5.1.1. Root Dirs naming conventions](#511-root-dirs-naming-conventions)
 
 
      
 
 ## 1. INTRODUCTION
-
+The purpose of this document is to provide you with quick devops info related to the usaage of the tool. The more you feel proficient in postgre administration and management the more you should skip reading it …
 
      
 
-## 2. KEY CONCEPTS
-
+## 2. SEARCHING FOR ANSWERS
+PostgreSQL has one of the best documentation online for a RDBMS:
+https://www.postgresql.org/docs/9.6/static/index.html
++ stackoverflow is full with good q&amp;a info to search for:
+https://www.google.fi/webhp?sourceid=chrome-instant&amp;ion=1&amp;espv=2&amp;ie=UTF-8#q=site:stackoverflow.com+postgresql+bash&amp;*
 
      
 
@@ -70,7 +96,8 @@ http://dba.stackexchange.com/a/54253/1245
 #### 3.4.2. Create the pgsql user 
 Create the pgsql user and grant him the privileges to create dbs and to connect to the postgres db. 
 
-    # create the pgsql user to be the same as the shell user you are going to execute the scripts with ( in my case it is ysg )
+    # create the pgsql user to be the same as the shell 
+    # user you are going to execute the scripts with ( in my case it is ysg )
     # postgres=# 
     create user ysg ;
     
@@ -108,7 +135,7 @@ Install the perl module by first installing the server development package
 
      
 
-#### 4.1.1. To check the status
+#### 4.1.1. To check the status of the postgreSql
 To check the status of the postgreSql issue:
 
     sudo /etc/init.d/postgresql status
