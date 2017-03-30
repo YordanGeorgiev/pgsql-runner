@@ -1,17 +1,6 @@
 #  PGSQL-RUNNER
 
 
-Table of Contents
-
-  * [1. WHAT IS THIS](#1-what-is-this)
-  * [2. INSTALLATION AND CONFIGURATION](#2-installation-and-configuration)
-    * [2.1. Prerequisites](#21-prerequisites)
-    * [2.2. Fetch the source](#22-fetch-the-source)
-    * [2.3. Build the first pgsql-runner instance](#23-build-the-first-pgsql-runner-instance)
-    * [2.4. Create you local conf file](#24-create-you-local-conf-file)
-    * [2.5. Start hacking](#25-start-hacking)
-
-
     
 
 ## 1. WHAT IS THIS

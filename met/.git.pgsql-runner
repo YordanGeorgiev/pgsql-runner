@@ -271,8 +271,12 @@ src/sql/pgsql/dev_pgsql_runner/01.create-table-person.sql
 src/sql/pgsql/dev_pgsql_runner/02.create-table-tech.sql
 src/sql/pgsql/tst_pgsql_runner
 src/sql/pgsql/tst_pgsql_runner/00.create-db.pgsql
+src/sql/pgsql/tst_pgsql_runner/01.create-table-person.sql
+src/sql/pgsql/tst_pgsql_runner/02.create-table-tech.sql
 src/sql/pgsql/prd_pgsql_runner
 src/sql/pgsql/prd_pgsql_runner/00.create-db.pgsql
+src/sql/pgsql/prd_pgsql_runner/01.create-table-person.sql
+src/sql/pgsql/prd_pgsql_runner/02.create-table-tech.sql
 .gitignore
 src/bash/pgsql-runner/tests/rem-pgsql-runner-actions.lst
 src/bash
@@ -282,10 +286,3 @@ doc/md
 doc/md/pgsql-runner-features-and-functionalities.md
 doc/md/pgsql-runner-issues.md
 doc/md/pgsql-runner-devops-guide.md
-doc/xls
-doc/xls/pgsql-runner-tool-issues.xls
-doc/pdf
-doc/pdf
-doc/pdf/pgsql-runner-devops-guide.pdf
-doc/pdf/pgsql-runner-issues.pdf
-doc/pdf/README.pdf

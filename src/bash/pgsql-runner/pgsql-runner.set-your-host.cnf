@@ -15,7 +15,4 @@ Emails=yordan.georgiev@gmail.com
 # where to place the backups of the 
 network_backup_dir=/vagrant/csitea/pgsql-runner/dat/zip
 
-# whether or not to print the debug msgs
-do_print_debug_msgs=1
-
 #eof file: src/bash/pgsql-runner/pgsql-runner.set-your-host.cnf

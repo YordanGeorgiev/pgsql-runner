@@ -1,30 +1,21 @@
-# src/bash/pgsql-runner/funcs/run-pgsql-scripts.func.sh
+# file: src/bash/pgsql-runner/funcs/run-pgsql-scripts.func.sh
 
-# v1.0.1
+# v1.0.2
 # ---------------------------------------------------------
-# todo: add doRunPgsqlScripts comments ...
+# the docs	
+# cat doc/txt/pgsql-runner/funcs/run-pgsql-scripts.func.txt
 # ---------------------------------------------------------
 doRunPgsqlScripts(){
 
 	doLog "DEBUG START doRunPgsqlScripts"
 	
-	cat doc/txt/pgsql-runner/funcs/run-pgsql-scripts.func.txt
-	
-	test -z "$sleep_interval" || sleep "$sleep_interval"
-	# Action !!!
-
-	doLog "[DEBUG] START doRunProjectpgsqlScripts"
-	pushd .
-
-   
-	export tmp_log_file=$tmp_dir/.$$.log
-	doLog " START == running sql scripts "	
-	# and clear the screen
-	#flush the screen
-	printf "\033[2J";printf "\033[0;0H"
+   export tmp_log_file="$tmp_dir/.$$.log"
+	doLog "INFO START :: running sql scripts "	
+	printf "\033[2J";printf "\033[0;0H"  ;    #and flush the screen
 	
 	echo $pgsql_user 
 	sql_dir="$product_instance_dir/src/sql/pgsql/$pgsql_db"
+
    # if a relative path is passed add to the product version dir
 	[[ $sql_dir == /* ]] || export sql_dir="$product_instance_dir""$sql_dir"
    sql_script="$sql_dir/""00.create-db.pgsql"
@@ -44,10 +35,9 @@ doRunPgsqlScripts(){
    sleep 3
 
 	test -z "$is_sql_biz_as_usual_run" && sleep 1 ; 
-	#flush the screen
-	printf "\033[2J";printf "\033[0;0H"
+	printf "\033[2J";printf "\033[0;0H"  ;    #and flush the screen
 	
-	doLog "should run the following sql files"
+	doLog "INFO should run the following sql files: "
    echo -e "\n\n"
 	find "$sql_dir" -type f -name "*.sql"|sort -n
 	sleep 2
@@ -63,7 +53,7 @@ doRunPgsqlScripts(){
 		# and clear the screen
 		printf "\033[2J";printf "\033[0;0H"
 
-		doLog " START ::: running $relative_sql_script"
+		doLog "INFO START ::: running $relative_sql_script"
 		echo -e '\n\n'
 		# run the sql save the result into a tmp log file
 		psql -v ON_ERROR_STOP=1 -q -t -X -U "$pgsql_user" \
@@ -78,19 +68,15 @@ doRunPgsqlScripts(){
 		cat "$tmp_log_file" >> $log_file
 		echo -e '\n\n'
 
-		doLog " STOP  ::: running $relative_sql_script"
+		doLog "INFO STOP  ::: running $relative_sql_script"
 		#debug sleep 1 
 	);
 	done < <(find "$sql_dir" -type f -name "*.sql"|sort -n)
 	
-	doLog " STOP  == running sql scripts "	
+	doLog "INFO STOP  :: running sql scripts "	
 	test -z "$is_sql_biz_as_usual_run" && sleep 1 ; 
-	# and clear the screen
-	printf "\033[2J";printf "\033[0;0H"
-
-	popd 
-	doLog "[DEBUG] STOP  doRunProjectpgsqlScripts"
-	set +e
+	
+	printf "\033[2J";printf "\033[0;0H"  ;    #and flush the screen
 	doLog "DEBUG STOP  doRunPgsqlScripts"
 }
 # eof func doRunPgsqlScripts

@@ -26,7 +26,6 @@
    # grant him the privilege to create db's 
    ALTER USER ysg CREATEDB;
 
-
 	# Interdependancies
 	# ------------------------------------------------------
    gnu bash, perl, pgsql-runner core funcs, postgres
