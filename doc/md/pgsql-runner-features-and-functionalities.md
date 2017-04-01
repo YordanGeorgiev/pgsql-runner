@@ -16,6 +16,7 @@ Table of Contents
     * [5.2. Running sql scripts in files alphabetic order](#52-running-sql-scripts-in-files-alphabetic-order)
     * [5.3. Logging sql scripts files run output to STDOUT , STDERR and a logfile](#53-logging-sql-scripts-files-run-output-to-stdout-,-stderr-and-a-logfile)
     * [5.4. Exit on sql script command fail](#54-exit-on-sql-script-command-fail)
+    * [5.5. Run the sql scripts from pre-set in the shell sql_dir](#55-run-the-sql-scripts-from-pre-set-in-the-shell-sql_dir)
   * [6. DOCUMENTATION](#6-documentation)
     * [6.1. README](#61-readme)
     * [6.2. DevOpsGuide](#62-devopsguide)
@@ -77,6 +78,9 @@ The tool will show you the output of each sql script file run and save it to a c
 
 ### 5.4. Exit on sql script command fail
 Should any of your sql script commands fail the tool with exit.
+
+### 5.5. Run the sql scripts from pre-set in the shell sql_dir
+If you pre-set a shell var named sql_dir to a dir not bellow the product instance dir of the tool you could run all the sql scripts in the same alphanumeric order .
 
 ## 6. DOCUMENTATION
 All the docs are stored in pdf and github md file format. 

@@ -12,9 +12,10 @@ doRunPgsqlScripts(){
    export tmp_log_file="$tmp_dir/.$$.log"
 	doLog "INFO START :: running sql scripts "	
 	printf "\033[2J";printf "\033[0;0H"  ;    #and flush the screen
-	
-	echo $pgsql_user 
-	sql_dir="$product_instance_dir/src/sql/pgsql/$pgsql_db"
+
+   # if the calling shell did not have exported sql_dir var	
+	test -z "$sql_dir" && \
+	   sql_dir="$product_instance_dir/src/sql/pgsql/$pgsql_db"
 
    # if a relative path is passed add to the product version dir
 	[[ $sql_dir == /* ]] || export sql_dir="$product_instance_dir""$sql_dir"
