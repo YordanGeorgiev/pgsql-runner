@@ -9,10 +9,10 @@ doChangeVersion(){
 	shift 1;
 	prefix='to-ver='
 	tgt_version=${tgt_version#$prefix}
-	tgt_environment_name=$(echo $environment_name | perl -ne "s/$product_version/$tgt_version/g;print")
+	tgt_product_instance_env_name=$(echo $product_instance_env_name | perl -ne "s/$product_version/$tgt_version/g;print")
 	# yest the new version is always dev !!!
-	tgt_environment_name=$(echo $tgt_environment_name | perl -ne "s/$env_type/dev/g;print")
-	tgt_product_instance_dir=$product_dir/$tgt_environment_name
+	tgt_product_instance_env_name=$(echo $tgt_product_instance_env_name | perl -ne "s/$env_type/dev/g;print")
+	tgt_product_instance_dir=$product_dir/$tgt_product_instance_env_name
 	mkdir -p $tgt_product_instance_dir	
 
 	test "$tgt_product_instance_dir" == "$product_instance_dir" && return

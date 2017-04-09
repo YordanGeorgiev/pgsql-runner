@@ -60,9 +60,9 @@ doCreateFull7zPackage(){
 	test $ret -ne 0 && doExit "non-existend file specified in the include file: $include_file "
 
 	# All  input  patterns must match at least one file and all input files found must be readable.
-	cat $include_file | sort -u | while read -r line ; do test -f "$org_name/$wrap_name/$environment_name/$line" && echo $line ; done \
+	cat $include_file | sort -u | while read -r line ; do test -f "$org_name/$wrap_name/$product_instance_env_name/$line" && echo $line ; done \
 		| grep -vP "$perl_ignore_file_pattern" | grep -vP '^\s*#' | perl -ne 's|\n|\000|g;print'| \
-		xargs -0 -I "{}" 7z u -r0 -m0=lzma2 -mx=5 -p"$pcking_pw" -w"$product_dir" "$zip_7z_file" "$org_name/$wrap_name/$environment_name/{}"
+		xargs -0 -I "{}" 7z u -r0 -m0=lzma2 -mx=5 -p"$pcking_pw" -w"$product_dir" "$zip_7z_file" "$org_name/$wrap_name/$product_instance_env_name/{}"
 
 	ret=$? 
 

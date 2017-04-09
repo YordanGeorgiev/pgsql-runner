@@ -47,7 +47,7 @@ doCreateFullPackage(){
 	# All  input  patterns must match at least one file and all input files found must be readable.
 	set -x ; ret=1
 	cat $include_file | grep -vP "$perl_ignore_file_pattern" | grep -vP '^\s*#' | perl -ne 's|\n|\000|g;print'| \
-	xargs -0 -I "{}" zip -MM $zip_file "$org_name/$wrap_name/$environment_name/{}"
+	xargs -0 -I "{}" zip -MM $zip_file "$org_name/$wrap_name/$product_instance_env_name/{}"
 	ret=$? 
 	set +x
 	test $ret -gt 0 && (

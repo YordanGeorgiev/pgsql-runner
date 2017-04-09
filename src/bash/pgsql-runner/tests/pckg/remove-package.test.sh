@@ -18,8 +18,8 @@ doTestRemovePackage(){
 
  	cmd="rm -fv $include_file" && \
  	doRunCmdAndLog "$cmd"
-	echo "rm -fvr $product_instance_dir">>"$product_dir/remove-""$environment_name".sh
-	echo "rm -fv $product_dir/remove-""$environment_name".sh>>"$product_dir/remove-""$environment_name".sh
-	nohup bash "$product_dir/remove-""$environment_name".sh &
+	echo "rm -fvr $product_instance_dir">>"$product_dir/remove-""$product_instance_env_name".sh
+	echo "rm -fv $product_dir/remove-""$product_instance_env_name".sh>>"$product_dir/remove-""$product_instance_env_name".sh
+	nohup bash "$product_dir/remove-""$product_instance_env_name".sh &
 }
 #eof test doRemovePackage

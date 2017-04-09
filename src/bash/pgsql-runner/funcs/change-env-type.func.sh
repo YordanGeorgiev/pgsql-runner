@@ -10,8 +10,8 @@ doChangeEnvType(){
 	
 
 	tgt_env="$1"
-	tgt_environment_name=$(echo $environment_name | perl -ne "s/$env_type/$tgt_env/g;print")
-	tgt_product_instance_dir=$product_dir/$tgt_environment_name
+	tgt_product_instance_env_name=$(echo $product_instance_env_name | perl -ne "s/$env_type/$tgt_env/g;print")
+	tgt_product_instance_dir=$product_dir/$tgt_product_instance_env_name
 	mkdir -p $tgt_product_instance_dir	
 	test $? -ne 0 && doExit 2 "Failed to create $tgt_product_instance_dir !"
 

@@ -10,11 +10,11 @@ doCloneToApp(){
 	tgt_app="$1"
 	prefix='to-app='
 	tgt_app=${tgt_app#$prefix}
-	tgt_environment_name=$(echo $environment_name | perl -ne "s/$wrap_name/$tgt_app/g;print")
-	tgt_environment_name=$(echo $tgt_environment_name | perl -ne "s/$product_version/0.0.0/g;print")
-	tgt_environment_name=$(echo $tgt_environment_name | perl -ne "s/$env_type/dev/g;print")
+	tgt_product_instance_env_name=$(echo $product_instance_env_name | perl -ne "s/$wrap_name/$tgt_app/g;print")
+	tgt_product_instance_env_name=$(echo $tgt_product_instance_env_name | perl -ne "s/$product_version/0.0.0/g;print")
+	tgt_product_instance_env_name=$(echo $tgt_product_instance_env_name | perl -ne "s/$env_type/dev/g;print")
 	tgt_product_dir=$product_base_dir/$tgt_app
-	tgt_product_instance_dir=$tgt_product_dir/$tgt_environment_name
+	tgt_product_instance_dir=$tgt_product_dir/$tgt_product_instance_env_name
 	mkdir -p $tgt_product_instance_dir 
 
 	# remove everything from the tgt product version dir - no extra files allowed !!!

@@ -273,7 +273,7 @@ doSetVars(){
 	# this will be dev , tst, prd
    env_type=$(echo `basename "$product_instance_dir"`|cut --delimiter='.' -f5)
 	product_version=$(echo `basename "$product_instance_dir"`|cut --delimiter='.' -f2-4)
-	environment_name=$(basename "$product_instance_dir")
+	product_instance_env_name=$(basename "$product_instance_dir")
 
 	cd ..
 	product_dir=`pwd`;
