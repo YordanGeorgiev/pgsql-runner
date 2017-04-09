@@ -4,7 +4,7 @@
 #use simple var_name=var_value syntax 
 
 #the name of this application 
-wrap_name=pgsql-runner
+run_unit=pgsql-runner
 
 #the name of this application's db
 db_name=dev_pgsql-runner

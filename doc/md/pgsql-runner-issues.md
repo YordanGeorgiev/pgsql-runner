@@ -132,7 +132,7 @@ Bugs fixing. Development of features and functionalities.
 
 ### 3.1. Rename ProductVersionDir to ProductInstanceDir
 Rename ProductVersionDir to ProductInstanceDir.
-Rename product_version_dir to product_instance_dir
+Rename product_instance_dir to product_instance_dir
 to reflect the pgsql-runner model
 
     sfw/bash/pgsql-runner/.doc-pub-host.files-to-backup.lst

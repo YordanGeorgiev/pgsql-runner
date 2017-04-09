@@ -36,7 +36,7 @@ doBackupFile(){
 
 	#define default vars
 	test -z $include_file         && \
-		include_file="$product_instance_dir/met/.$env_type.$wrap_name"
+		include_file="$product_instance_dir/met/.$env_type.$run_unit"
 
 	# relative file path is passed turn it to absolute one 
 	[[ $include_file == /* ]] || include_file=$product_instance_dir/$include_file
@@ -61,7 +61,7 @@ doBackupFile(){
 
 	# if the files to backup list file is not cnfigured set default
 	test -z "$files_to_backup_list_file" && \
-		files_to_backup_list_file="$wrap_bash_dir/.$host_name.files-to-backup.lst"
+		files_to_backup_list_file="$run_unit_bash_dir/.$host_name.files-to-backup.lst"
 	test -r $files_to_backup_list_file || touch $files_to_backup_list_file
 	doLog "files_to_backup_list_file : $files_to_backup_list_file"
 

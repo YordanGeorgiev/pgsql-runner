@@ -36,7 +36,7 @@ doBackupFile(){
 
 	# the file to be backup should be included in the full package of the app
 	test -z $include_file         && \
-		include_file="$product_instance_dir/met/.include.$wrap_name"
+		include_file="$product_instance_dir/met/.include.$run_unit"
 
 	
 	# the timestamped file to be backup should be included in the full package of the app
@@ -58,7 +58,7 @@ doBackupFile(){
 
 	# if the files to backup list file is not cnfigured set default
 	test -z "$files_to_backup_list_file" && \
-		files_to_backup_list_file="$wrap_bash_dir/.$host_name.files-to-backup.lst"
+		files_to_backup_list_file="$run_unit_bash_dir/.$host_name.files-to-backup.lst"
 	test -r $files_to_backup_list_file || touch $files_to_backup_list_file
 	doLog "files_to_backup_list_file : $files_to_backup_list_file"
 
