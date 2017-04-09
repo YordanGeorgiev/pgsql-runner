@@ -19,7 +19,14 @@ doPrintUsage(){
       bash $0 -h
       bash $0 -help
       bash $0 --help
-	
+
+      # to run the sql scripts bellow the product-instance-dir sql-dir : $sql_dir
+      bash $0 run-pgsql-scripts
+
+      # to ruun the sql scripts bellow a pre-difined root dir	
+      export sql_dir=`pwd`/src/sql/pgsql/dev_issue_tracker
+      bash /opt/csitea/pgsql-runner/src/bash/pgsql-runner.sh -a run-pgsql-scripts
+
 		# and here you have some more packaging calls .. 
       bash $0 -a create-full-package -i <<path_to_include_file>> -a gmail-package
 		bash $0 -a create-relative-package -i <<path_to_include_file>> -a gmail-package
@@ -37,25 +44,6 @@ doPrintUsage(){
       bash $0 -a save-tmux-session
       bash $0 -a restore-tmux-session
 		
-		# those are eventually pgsql-runnerers for the correspondent sbt commands
-      bash $0 -a sbt-clean-compile
-      bash $0 -a sbt-compile
-      bash $0 -a sbt-run
-     	
-		# should you have any errors it might be good idea to run those verbose also
-		bash $0 -a sbt-clean-compile-verbose
-      bash $0 -a sbt-compile-verbose
-      bash $0 -a sbt-run-verbose
-
-		# you could run the correspondent calls for the play2 projects
-      bash $0 -a activator-clean-compile
-      bash $0 -a activator-compile
-      bash $0 -a activator-run
-     	
-		# should you have any errors it might be good idea to run those verbose also
-		bash $0 -a activator-clean-compile-verbose
-      bash $0 -a activator-compile-verbose
-      bash $0 -a activator-run-verbose
 	Note the usage is quite long - you might wanto to use the less page :
       `basename $0` --usage \| less
 
