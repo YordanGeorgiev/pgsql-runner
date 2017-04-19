@@ -6,11 +6,16 @@
 #the name of this application 
 app_name=pgsql-runner
 
+# the dev db
+db_name="$env_type"'_pgsql_runner'
+# db_name=dev_issue_tracker
+# db_name=tst_issue_tracker
+
+# the configured pgsql user to run the scripts with
+pgsql_user=ysg
+
 # to whom to send e-mails - use space as delimiter
 Emails=yordan.georgiev@gmail.com
-
-# this way each environment will se its respective db 
-db="$env_type"_"$app_name"
 
 # where to place the backups of the 
 network_backup_dir=/vagrant/csitea/pgsql-runner/dat/zip

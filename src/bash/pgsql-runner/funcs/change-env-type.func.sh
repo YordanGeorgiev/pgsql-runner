@@ -7,7 +7,6 @@
 doChangeEnvType(){
 
 	doLog "DEBUG START doChangeEnvType"
-	
 
 	tgt_env="$1"
 	tgt_product_instance_env_name=$(echo $product_instance_env_name | perl -ne "s/$env_type/$tgt_env/g;print")

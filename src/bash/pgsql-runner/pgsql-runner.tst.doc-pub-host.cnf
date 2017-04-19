@@ -9,6 +9,9 @@ app_name=pgsql-runner
 # the tst db
 db_name=tst_pgsql_runner
 
+# the configured pgsql user to run the scripts with
+pgsql_user=ysg
+
 # to whom to send e-mails - use space as delimiter
 Emails=yordan.georgiev@gmail.com
 
