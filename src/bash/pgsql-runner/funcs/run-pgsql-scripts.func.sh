@@ -36,7 +36,7 @@ doRunPgsqlScripts(){
 
 	# and save the tmp log file into the log file
 	cat "$tmp_log_file" >> $log_file
-   sleep 3
+   sleep 2
 
 	test -z "$is_sql_biz_as_usual_run" && sleep 1 ; 
 	printf "\033[2J";printf "\033[0;0H"  ;    #and flush the screen
@@ -44,7 +44,7 @@ doRunPgsqlScripts(){
 	doLog "INFO should run the following sql files: "
    echo -e "\n\n"
 	find "$sql_dir" -type f -name "*.sql"|sort -n
-	sleep 2
+	sleep 1
 
 	# run the sql scripts in alphabetical order
    while read -r sql_script ; do (

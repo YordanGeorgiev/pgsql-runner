@@ -198,10 +198,12 @@ doCheckReadyToStart(){
 doExit(){
    exit_msg="${exit_msg#* }"
 
+
    if (( $exit_code != 0 )); then
       exit_msg=" ERROR --- exit_code $exit_code --- exit_msg : $exit_msg"
-      >&2 echo "$exit_msg"
-      # doSendReport
+      >&2 echo "$exit_msg"    #echo to STDERR !
+
+      # doSendReport          # this is very often overkill ...
       doLog "FATAL STOP FOR $run_unit RUN with: "
       doLog "FATAL exit_code: $exit_code exit_msg: $exit_msg"
    else
@@ -258,10 +260,6 @@ doCleanAfterRun(){
    cmd="rm -fvr $tmp_dir"
    doRunCmdAndLog "$cmd"
 
-
-#   while read -r f ; do 
-#      test -f $f && rm -fv "$f" ; 
-#   done < <(find "$run_unit_bash_dir" -type f -name '*.bak')
 }
 #eof func doCleanAfterRun
 
@@ -343,11 +341,12 @@ doSetVars(){
 
    # start set default vars
    do_print_debug_msgs=0
-   # stop set default vars
-   test -z "$db_name" && doParseConfFile
-   test -z "$db_name" || doSetUndefinedShellVarsFromCnfFile
 
-	doParseConfFile
+   # if the db_name is NOT pre-set in the calling shell set it from own conf file
+   test -z "$db_name" && doParseConfFile
+   # if the db_name IS pre-set in the calling-shell set the sript run vars 
+   # by not overriding the pre-set in the shell vars
+   test -z "$db_name" || doSetUndefinedShellVarsFromCnfFile
 	( set -o posix ; set ) | sort -n >"$tmp_dir/vars.after"
 
 
@@ -387,26 +386,23 @@ doSetUndefinedShellVarsFromCnfFile(){
 	test -f "$run_unit_bash_dir/$run_unit.$host_name.cnf" \
 		&& cnf_file="$run_unit_bash_dir/$run_unit.$env_type.$host_name.cnf"
 
-	# yet finally override if passed as argument to this function
-	# if the the ini file is not passed define the default host independant ini file
-	test -z "$1" || cnf_file=$1;shift 1;
-	#debug echo "@doParseConfFile cnf_file:: $cnf_file" ; sleep 6
-	# coud be later on parametrized ... 
 	INI_SECTION=MainSection
 
-   vars_to_set=`sed -e 's/[[:space:]]*\=[[:space:]]*/=/g' \
-      -e 's/;.*$//' \
-      -e 's/[[:space:]]*$//' \
-      -e 's/^[[:space:]]*//' \
+	vars_to_set=`sed -e 's/[[:space:]]*\=[[:space:]]*/=/g' \
+		-e 's/#.*$//' \
+		-e 's/[[:space:]]*$//' \
+		-e 's/^[[:space:]]*//' \
       -e "s/^\(.*\)=\([^\"']*\)$/test -z \"\$\1\" \&\& export \1=\"\2\"/" \
-      < $cnf_file \
-      | sed -n -e "/^\[MainSection\]/,/^\s*\[/{/^[^#].*\=.*/p;}"`
-
+		< $cnf_file \
+		| sed -n -e "/^\[$INI_SECTION\]/,/^\s*\[/{/^[^#].*\=.*/p;}"`
+   
    while IFS=' ' read -r var_to_set
    do
       echo "running: $var_to_set"
-      eval `$var_to_set`
+      eval "$var_to_set"
    done < "$vars_to_set"
+
+   vars_to_set=""
 }
 #eof func doSetShellVarsFromCnfFile
 
