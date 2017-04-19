@@ -7,7 +7,7 @@
 app_name=pgsql-runner
 
 # the prd db
-pgsql_db=prd_pgsql_runner
+db_name=prd_pgsql_runner
 
 # to whom to send e-mails - use space as delimiter
 Emails=yordan.georgiev@gmail.com

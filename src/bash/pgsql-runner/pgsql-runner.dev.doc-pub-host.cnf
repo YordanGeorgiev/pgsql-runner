@@ -7,7 +7,9 @@
 app_name=pgsql-runner
 
 # the dev db
-pgsql_db=dev_pgsql_runner
+db_name=dev_pgsql_runner
+# db_name=dev_issue_tracker
+# db_name=tst_issue_tracker
 
 # the configured pgsql user to run the scripts with
 pgsql_user=ysg

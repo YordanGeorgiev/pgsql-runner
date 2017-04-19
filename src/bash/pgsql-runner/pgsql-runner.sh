@@ -5,9 +5,8 @@ umask 022    ;
 # set -x # print the commands
 # set -v # print each input line as well
 # set -e # exit the script if any statement returns a non-true return value. gotcha !!!
-trap "exit $exit_code" TERM SIGTERM SIGHUP SIGINT SIGQUIT
+trap "exit $exit_code" TERM
 export TOP_PID=$$
-
 
 #v1.0.7 
 #------------------------------------------------------------------------------
@@ -97,26 +96,23 @@ doRunActions(){
 	);
 	done < <(echo "$actions")
 
-
-
 }
 #eof func doRunActions
 
 
-#v1.0.7 
+#v1.2.6 
 #------------------------------------------------------------------------------
 # register the run-time vars before the call of the $0
 #------------------------------------------------------------------------------
 doInit(){
    call_start_dir=`pwd`
-   run_unit_bash_dir=`dirname $(readlink -f $0)`
+   run_unit_bash_dir=$(perl -e 'use File::Basename; use Cwd "abs_path"; print dirname(abs_path(@ARGV[0]));' -- "$0")
    tmp_dir="$run_unit_bash_dir/tmp/.tmp.$$"
    mkdir -p "$tmp_dir"
-   ( set -o posix ; set ) >"$tmp_dir/vars.before"
+   ( set -o posix ; set )| sort >"$tmp_dir/vars.before"
    my_name_ext=`basename $0`
    run_unit=${my_name_ext%.*}
-   test $OSTYPE = 'cygwin' && host_name=`hostname -s`
-   test $OSTYPE != 'cygwin' && host_name=`hostname`
+   host_name=`hostname -s`
 }
 #eof doInit
 
@@ -195,25 +191,12 @@ doCheckReadyToStart(){
 #eof func doCheckReadyToStart
 
 
-# v1.0.8
+# v1.2.7
 #------------------------------------------------------------------------------
 # clean and exit with passed status and message
 #------------------------------------------------------------------------------
 doExit(){
-   #set -x
-   exit_code=0
-   exit_msg="$*"
-
-   doCleanAfterRun
-
-   echo -e "\n\n"
-	cd $call_start_dir
-
-   case $1 in [0-9])
-      exit_code="$1";
-      export exit_code=$1
-      shift 1;
-   esac
+   exit_msg="${exit_msg#* }"
 
    if (( $exit_code != 0 )); then
       exit_msg=" ERROR --- exit_code $exit_code --- exit_msg : $exit_msg"
@@ -226,14 +209,16 @@ doExit(){
       doLog "INFO  STOP FOR $run_unit RUN: $exit_code $exit_msg"
    fi
 
+   doCleanAfterRun
+   cd $call_start_dir
 
    #src: http://stackoverflow.com/a/9894126/65706
    test $exit_code -ne 0 && kill -s TERM $TOP_PID
    test $exit_code -eq 0 && exit 0
-   test $exit_code -ne 0 && kill -9 $TOP_PID
-   
+
 }
 #eof func doExit
+
 
 
 
@@ -338,8 +323,8 @@ doSetVars(){
 	# while read -r func_file ; do echo "$func_file" ; done < <(find . -name "*func.sh")
 
    # this will be dev , tst, prd
-   env_type=$(echo `basename "$product_instance_dir"`|cut --delimiter='.' -f5)
-	product_version=$(echo `basename "$product_instance_dir"`|cut --delimiter='.' -f2-4)
+   env_type=$(echo `basename "$product_instance_dir"`|cut -d'.' -f5)
+	product_version=$(echo `basename "$product_instance_dir"`|cut -d'.' -f2-4)
 	product_instance_env_name=$(basename "$product_instance_dir")
 
 	cd ..
@@ -359,9 +344,11 @@ doSetVars(){
    # start set default vars
    do_print_debug_msgs=0
    # stop set default vars
+   test -z "$db_name" && doParseConfFile
+   test -z "$db_name" || doSetUndefinedShellVarsFromCnfFile
 
 	doParseConfFile
-	( set -o posix ; set ) >"$tmp_dir/vars.after"
+	( set -o posix ; set ) | sort -n >"$tmp_dir/vars.after"
 
 
 	doLog "INFO # --------------------------------------"
@@ -372,13 +359,56 @@ doSetVars(){
 		
 		exit_code=0
 		doLog "INFO using the following vars:"
-		cmd="$(comm --nocheck-order -3 $tmp_dir/vars.before $tmp_dir/vars.after | perl -ne 's#\s+##g;print "\n $_ "' )"
+		cmd="$(comm $tmp_dir/vars.before $tmp_dir/vars.after | perl -ne 's#\s+##g;print "\n $_ "' )"
 		echo -e "$cmd"
 
 		# and clear the screen
 		printf "\033[2J";printf "\033[0;0H"
 }
 #eof func doSetVars
+
+#------------------------------------------------------------------------------
+# set vars from the cnf file, but only if they are not pre-set in the calling shell
+#------------------------------------------------------------------------------
+doSetUndefinedShellVarsFromCnfFile(){
+
+	# set a default cnfiguration file
+	cnf_file="$run_unit_bash_dir/$run_unit.cnf"
+
+	# however if there is a host dependant cnf file override it
+	test -f "$run_unit_bash_dir/$run_unit.$host_name.cnf" \
+		&& cnf_file="$run_unit_bash_dir/$run_unit.$host_name.cnf"
+	
+	# if we have perl apps they will share the same cnfiguration settings with this one
+	test -f "$product_instance_dir/$run_unit.$host_name.cnf" \
+		&& cnf_file="$product_instance_dir/$run_unit.$host_name.cnf"
+   
+   # however if there is a host dependant and env-aware cnf file override it
+	test -f "$run_unit_bash_dir/$run_unit.$host_name.cnf" \
+		&& cnf_file="$run_unit_bash_dir/$run_unit.$env_type.$host_name.cnf"
+
+	# yet finally override if passed as argument to this function
+	# if the the ini file is not passed define the default host independant ini file
+	test -z "$1" || cnf_file=$1;shift 1;
+	#debug echo "@doParseConfFile cnf_file:: $cnf_file" ; sleep 6
+	# coud be later on parametrized ... 
+	INI_SECTION=MainSection
+
+   vars_to_set=`sed -e 's/[[:space:]]*\=[[:space:]]*/=/g' \
+      -e 's/;.*$//' \
+      -e 's/[[:space:]]*$//' \
+      -e 's/^[[:space:]]*//' \
+      -e "s/^\(.*\)=\([^\"']*\)$/test -z \"\$\1\" \&\& export \1=\"\2\"/" \
+      < $cnf_file \
+      | sed -n -e "/^\[MainSection\]/,/^\s*\[/{/^[^#].*\=.*/p;}"`
+
+   while IFS=' ' read -r var_to_set
+   do
+      echo "running: $var_to_set"
+      eval `$var_to_set`
+   done < "$vars_to_set"
+}
+#eof func doSetShellVarsFromCnfFile
 
 
 #v1.0.7
@@ -418,7 +448,6 @@ doParseConfFile(){
 		< $cnf_file \
 		| sed -n -e "/^\[$INI_SECTION\]/,/^\s*\[/{/^[^#].*\=.*/p;}"`
    
-		
 }
 #eof func doParseConfFile
 

@@ -15,7 +15,7 @@ doRunPgsqlScripts(){
 
    # if the calling shell did not have exported sql_dir var	
 	test -z "$sql_dir" && \
-	   sql_dir="$product_instance_dir/src/sql/pgsql/$pgsql_db"
+	   sql_dir="$product_instance_dir/src/sql/pgsql/$db_name"
 
    # if a relative path is passed add to the product version dir
 	[[ $sql_dir == /* ]] || export sql_dir="$product_instance_dir""$sql_dir"
@@ -23,9 +23,12 @@ doRunPgsqlScripts(){
    
    # run the sql save the result into a tmp log file
    psql -v ON_ERROR_STOP=1 -q -t -X -U "$pgsql_user" \
-       -v pgsql_db="$pgsql_db" -f "$sql_script" postgres > "$tmp_log_file" 2>&1
-
+       -v db_name="$db_name" -f "$sql_script" postgres > "$tmp_log_file" 2>&1
    ret=$?
+   
+   # show the user what is happenning 
+   cat "$tmp_log_file"
+
    test $ret -ne 0 && doExit $ret "pid: $$ psql ret $ret - failed to run sql_script: $sql_script !!!"
  
 	# show the developer what happened
@@ -58,12 +61,13 @@ doRunPgsqlScripts(){
 		echo -e '\n\n'
 		# run the sql save the result into a tmp log file
 		psql -v ON_ERROR_STOP=1 -q -t -X -U "$pgsql_user" \
-         -v pgsql_db="$pgsql_db" -f "$sql_script" "$pgsql_db"> "$tmp_log_file" 2>&1
-      
-      test $ret -ne 0 && doExit $ret "pid: $$ psql ret $ret - failed to run sql_script: $sql_script !!!"
-
+         -v db_name="$db_name" -f "$sql_script" "$db_name" > "$tmp_log_file" 2>&1
+       
 		# show the user what is happenning 
 		cat "$tmp_log_file"
+
+      test $ret -ne 0 && doExit $ret "pid: $$ psql ret $ret - failed to run sql_script: $sql_script !!!"
+
 
 		# and save the tmp log file into the script log file
 		cat "$tmp_log_file" >> $log_file

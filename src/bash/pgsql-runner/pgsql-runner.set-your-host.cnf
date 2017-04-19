@@ -7,7 +7,7 @@
 app_name=pgsql-runner
 
 # the dev db
-pgsql_db=dev_pgsql_runner
+db_name=dev_pgsql_runner
 
 # to whom to send e-mails - use space as delimiter
 Emails=yordan.georgiev@gmail.com
